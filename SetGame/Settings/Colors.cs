@@ -7,6 +7,7 @@ namespace SetGame.Settings {
     public static class Colors {
 
         public static NSColor CardBackgroundColor = NSColor.Gray;
+        public static NSColor CardMouseOverColor = NSColor.DarkGray;
         /*
          * Card Shape Colors
          */ 

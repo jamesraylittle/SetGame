@@ -43,6 +43,7 @@ namespace SetGame {
             ShapeCount = _shapeCount;
             ShapeColor = _shapeColor;
             ShapeFill = _shapeFill;
+
         }
 
         override public String ToString() {
@@ -85,7 +86,6 @@ namespace SetGame {
                     break;
                 }
 
-                _shapeNode.Position = Settings.Positions.TripleShapePosition(i);
                 _shapes.Add(_shapeNode);
 
             }
@@ -94,6 +94,16 @@ namespace SetGame {
 
             return card;
         }
+
+        public void MouseOver() {
+            Node.FillColor = Settings.Colors.CardMouseOverColor;
+        }
+
+        public void NoMouseOver() {
+            Node.FillColor = Settings.Colors.CardBackgroundColor;
+        }
+
+
 
         public static Card GenerateRandomCard() {
             return new Card(

@@ -27,11 +27,13 @@ namespace SetGame {
                     var card = Card.GenerateRandomCard();
                     card.Node.Position = Settings.Positions.CalcCardPosition(row, col);
                     Console.WriteLine("Adding Card To Table => " + card);
+
                     AddChild(card.Node);
                 }
             }
 
         }
+
 
         public override void MouseDown(NSEvent theEvent) {
             //do nothing for now.

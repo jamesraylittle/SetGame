@@ -33,7 +33,7 @@ namespace SetGame.Settings {
 
         //single shape positions
         public static double SingleShapeX = Sizes.CardHeight / 2f;
-        public static double SingleShapeY = 0;
+        public static double SingleShapeY = 50;
 
         public static CGPoint SingleShapePosition = 
             new CGPoint(SingleShapeX, SingleShapeY);
@@ -41,7 +41,7 @@ namespace SetGame.Settings {
         //double shape positions
         public static double DoubleShapeX = SingleShapeX;
         public static double DoubleShapeY = 25;
-        public static double DoubleShapePadding = 25;
+        public static double DoubleShapePadding = 50;
 
         public static CGPoint DoubleShapePosition(int row) {
             return new CGPoint(
