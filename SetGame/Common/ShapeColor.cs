@@ -29,15 +29,15 @@ namespace SetGame.Common {
         public static NSColor GetColor(ShapeColor color) {
             switch (color) {
                 case ShapeColor.Red: //red
-                    return NSColor.Red;
+                    return Settings.Colors.RedShapeColor;
 
 
                 case ShapeColor.Blue: //Blue
-                    return NSColor.Blue;
+                    return Settings.Colors.BlueShapeColor;
 
                 default:
                 //case CardColor.Purple: //Purple
-                    return NSColor.Purple;
+                return Settings.Colors.PurpleShapeColor;
             }
 
         }

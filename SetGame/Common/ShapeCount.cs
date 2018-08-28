@@ -23,6 +23,14 @@ namespace SetGame.Common {
             var nextIdx = gen.Next(0, All.Capacity);
             return All[nextIdx];
         }
+
+        public static int GetInt(ShapeCount count) {
+            switch (count) {
+                case ShapeCount.One: return 1;
+                case ShapeCount.Two: return 2;
+                default: return 3;
+            }
+        }
     }
 
 }

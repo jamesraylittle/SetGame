@@ -66,6 +66,7 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Common\" />
+    <Folder Include="Settings\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="GameScene.sks" />
@@ -89,6 +90,9 @@
     <Compile Include="Common\ShapeColor.cs" />
     <Compile Include="Common\ShapeCount.cs" />
     <Compile Include="Common\ShapeFill.cs" />
+    <Compile Include="Settings\Colors.cs" />
+    <Compile Include="Settings\Sizes.cs" />
+    <Compile Include="Settings\Positions.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainMenu.xib" />

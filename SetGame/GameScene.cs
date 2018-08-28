@@ -21,24 +21,21 @@ namespace SetGame {
             background.ZPosition = -1000;
             AddChild(background);
 
-            //Figuring out card placement.
-            var startingX = 125;
-            var startingY = 550;
-
-            var padding = 150;
-            for (int row = 0; row < 4; row++) {
-                for (int col = 0; col < 3; col++) {
-                    var deltaX = (startingX * col) + (padding * col) + startingX;
-                    var deltaY = startingY + (row * -padding);
-
-                    drawOvalRectangle(deltaX, deltaY);
+            //Generate each card and place them on the table.
+            for (int row = 0; row < Settings.Sizes.TotalRows; row++) {
+                for (int col = 0; col < Settings.Sizes.TotalColumns; col++) {
+                    var card = Card.GenerateRandomCard();
+                    card.Node.Position = Settings.Positions.CalcCardPosition(row, col);
+                    Console.WriteLine("Adding Card To Table => " + card);
+                    AddChild(card.Node);
                 }
             }
+
         }
 
         public override void MouseDown(NSEvent theEvent) {
             //do nothing for now.
-            Console.WriteLine(CardShapes.GetRandom());
+            Console.WriteLine(Card.GenerateRandomCard());
         }
 
         public override void Update(double currentTime) {
