@@ -132,11 +132,15 @@ namespace SetGame {
         }
 
         public void MouseOver() {
-            Node.FillColor = Settings.Colors.CardMouseOverColor;
+            //Node.FillColor = Settings.Colors.CardMouseOverColor;
+            Node.Position =
+                new CGPoint(Node.Position.X, Node.Position.Y + 10);
         }
 
         public void NoMouseOver() {
-            Node.FillColor = Settings.Colors.CardBackgroundColor;
+            //Node.FillColor = Settings.Colors.CardBackgroundColor;
+            Node.Position =
+                new CGPoint(Node.Position.X, Node.Position.Y - 10);
         }
 
 
@@ -149,5 +153,30 @@ namespace SetGame {
                 ShapeFills.GetRandom()
             );
         }
+
+        /*
+         * For Two cards to be considered similar:
+         * Each Attribute must be all the same, or
+         * different.
+         */ 
+        public static bool IsSimilar(Card A, Card B) {
+            //Check Shape:
+            var sameShape = A.Shape == B.Shape;
+            var sameShapeCount = A.ShapeCount == B.ShapeCount;
+            var sameShapeColor = A.ShapeColor == B.ShapeColor;
+            var sameShapeFill = A.ShapeFill == B.ShapeFill;
+
+            return sameShape && sameShapeCount && sameShapeColor && sameShapeFill;
+        }
+
+        public static bool CheckSet(List<Card> cards) {
+            //lots of assumptions being made for now
+            var cardA = cards[0];
+            var cardB = cards[1];
+            var cardC = cards[2];
+
+            return IsSimilar(cardA, cardB) && IsSimilar(cardB, cardC);
+        }
+
     }
 }

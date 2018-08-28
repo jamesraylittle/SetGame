@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Collections.Generic;
 
 using AppKit;
@@ -70,13 +71,56 @@ namespace SetGame {
                 Cards.Where(c => 
                     c.Node.ContainsPoint(theEvent.LocationInNode(this))
                 ).ToList().ForEach(c => c.Clicked());
+
+                //If three cards are selected lets check for a Set
+                var clickedCards = Cards.Where(c => c.IsClicked).ToList();
+
+                if (clickedCards.Count >= 3) {
+
+                    if (Card.CheckSet(clickedCards)) {
+                        clickedCards.ForEach(c => {
+                            //Reset the cards State.
+                            c.Clicked();
+                            //Remove these cards from the set.
+                            Cards.Remove(c);
+                        });
+
+                        //Remove the Nodes from the Scene.
+                        RemoveChildren(clickedCards.Select(c => c.Node).ToArray());
+                        //Generate 3 new cards
+                        for (int i = 0; i < 3; i++) {
+                            var replacementCard = Card.GenerateRandomCard();
+                            replacementCard.Node.Position = clickedCards[i].Node.Position;
+                            Cards.Add(replacementCard);
+                            AddChild(replacementCard.Node);
+                        }
+                        Console.WriteLine("SET FOUND");
+                    } else { //Not a Set Unselect.
+                        clickedCards.ForEach(c => c.Clicked());
+                        Console.WriteLine("NOT A SET");
+                    }
+
+                }
+
+
+
             }
 
+
+
+        }
+
+        public override void KeyUp(NSEvent theEvent) {
+            if (theEvent.KeyCode == (ushort)NSKey.R) {
+                DealCards();
+            }
         }
 
         public override void Update(double currentTime) {
             // Called before each frame is rendered
-        }
+
+
+        } //eom
 
       
     }
