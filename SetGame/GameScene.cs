@@ -10,6 +10,9 @@ using CoreGraphics;
 using SetGame.Common;
 
 namespace SetGame {
+
+    delegate void MouseOverCard(NSEvent theEvent);
+
     public class GameScene : SKScene {
 
         public List<Card> Cards { get; private set; }
@@ -27,6 +30,8 @@ namespace SetGame {
 
 
 
+
+            DealCards();
         }
 
         public void DealCards() {
@@ -46,6 +51,8 @@ namespace SetGame {
                 for (int col = 0; col < Settings.Sizes.TotalColumns; col++) {
                     var card = Card.GenerateRandomCard();
                     card.Node.Position = Settings.Positions.CalcCardPosition(row, col);
+                    
+
                     Console.WriteLine("Adding Card To Table => " + card);
                     //Add the card to the list
                     Cards.Add(card);
@@ -57,13 +64,14 @@ namespace SetGame {
 
 
         public override void MouseDown(NSEvent theEvent) {
-            //do nothing for now.
+
+            //Detecting which cards are clicked.
             if (Cards != null) {
-                Cards.Where(c => c.Node.Position == theEvent.LocationInWindow)
-                     .ToList()
-                     .ForEach(c => Console.WriteLine("Clicked => " + c));
+                Cards.Where(c => 
+                    c.Node.ContainsPoint(theEvent.LocationInNode(this))
+                ).ToList().ForEach(c => c.Clicked());
             }
-            DealCards();
+
         }
 
         public override void Update(double currentTime) {

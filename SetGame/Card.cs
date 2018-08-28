@@ -25,6 +25,8 @@ namespace SetGame {
         public ShapeColor ShapeColor { get; private set; }
         public ShapeFill ShapeFill { get; private set; }
 
+        public bool IsClicked { get; private set; }
+
         private SKShapeNode _node = null;
         public SKShapeNode Node { 
             get {
@@ -43,6 +45,7 @@ namespace SetGame {
             ShapeCount = _shapeCount;
             ShapeColor = _shapeColor;
             ShapeFill = _shapeFill;
+            IsClicked = false;
 
         }
 
@@ -105,6 +108,7 @@ namespace SetGame {
                 }
 
                 _shapes.Add(_shapeNode);
+
                 card.AddChild(_shapeNode);
 
             }
@@ -112,12 +116,19 @@ namespace SetGame {
             return card;
         }
 
+
         private SKShapeNode _GetShape() {
             switch (Shape) {
                 case CardShape.Diamond: return ShapeFactory.MakeDiamond();
                 case CardShape.Sqiqqle: return ShapeFactory.MakeSquiggle();
                 default: return ShapeFactory.MakeOval();
             }
+        }
+
+        public void Clicked() {
+            IsClicked = !IsClicked;
+            if (IsClicked) MouseOver();
+            else NoMouseOver();
         }
 
         public void MouseOver() {

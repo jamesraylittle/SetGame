@@ -24,8 +24,6 @@ namespace SetGame {
             // new Path
             var shape = SKShapeNode.FromCircle(12.5f);
 
-
-            //return MakeDiamond();
             return shape;
         }
         
