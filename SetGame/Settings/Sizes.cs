@@ -17,8 +17,8 @@ namespace SetGame.Settings {
         /*
          * Shape Sizes
          */
-        public static double OvalHeight = 20;
-        public static double OvalWidth = 100;
+        public static double OvalHeight = 90;
+        public static double OvalWidth = 20;
         public static CGSize OvalSize = new CGSize(OvalWidth, OvalHeight);
 
         /*

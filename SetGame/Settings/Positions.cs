@@ -39,26 +39,26 @@ namespace SetGame.Settings {
             new CGPoint(SingleShapeX, SingleShapeY);
 
         //double shape positions
-        public static double DoubleShapeX = SingleShapeX;
-        public static double DoubleShapeY = 25;
+        public static double DoubleShapeX = 50;
+        public static double DoubleShapeY = SingleShapeY;
         public static double DoubleShapePadding = 50;
 
-        public static CGPoint DoubleShapePosition(int row) {
+        public static CGPoint DoubleShapePosition(int col) {
             return new CGPoint(
-                DoubleShapeX,
-                DoubleShapeY + (row * DoubleShapePadding)
+                (DoubleShapeX * col) + (DoubleShapePadding * col) + DoubleShapeX,
+                DoubleShapeY
             );
         }
 
         //triple shape positions
-        public static double TripleShapeX = SingleShapeX;
-        public static double TripleShapeY = 25;
+        public static double TripleShapeX = 37;
+        public static double TripleShapeY = SingleShapeY;
         public static double TripleShapePadding = 25;
 
-        public static CGPoint TripleShapePosition(int row) {
+        public static CGPoint TripleShapePosition(int col) {
             return new CGPoint(
-                TripleShapeX,
-                TripleShapeY + (row * TripleShapePadding)
+                (TripleShapeX * col) + (TripleShapePadding * col) + TripleShapeX,
+                TripleShapeY
             );
         }
 
