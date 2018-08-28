@@ -19,7 +19,7 @@ namespace SetGame {
 
         public override void DidMoveToView(SKView view) {
             //Load in the "table top"
-            SKSpriteNode background = SKSpriteNode.FromImageNamed(NSBundle.MainBundle.PathForResource("bg", "jpeg"));
+            SKSpriteNode background = SKSpriteNode.FromImageNamed(NSBundle.MainBundle.PathForResource("bg_1", "jpg"));
             background.Position = new CGPoint(Frame.GetMidX(), Frame.GetMidY());
             background.ScaleTo(Frame.Size);
             background.ZPosition = -1000;
@@ -58,6 +58,11 @@ namespace SetGame {
 
         public override void MouseDown(NSEvent theEvent) {
             //do nothing for now.
+            if (Cards != null) {
+                Cards.Where(c => c.Node.Position == theEvent.LocationInWindow)
+                     .ToList()
+                     .ForEach(c => Console.WriteLine("Clicked => " + c));
+            }
             DealCards();
         }
 
@@ -65,35 +70,6 @@ namespace SetGame {
             // Called before each frame is rendered
         }
 
-        private void drawOvalRectangle(double x, double y) {
-            Console.WriteLine("Rect X: " + x + ", Rect Y: " + y);
-            var rectangle = new CGRect(x, y, 200, 100);
-            var card = SKShapeNode.FromRect(rectangle, 5);
-            var oval = SKShapeNode.FromRect(new CGSize(100, 33.33), 20);
-            card.FillColor = NSColor.DarkGray;
-
-            oval.FillColor = NSColor.Blue;
-            oval.Position = new CGPoint(x + 100, y + 50);
-
-            card.AddChild(oval);
-
-            AddChild(card);
-        }
-
-
-        private void drawRectangle(double x, double y) {
-            /*Console.WriteLine("Rect X: " + x + ", Rect Y: " + y);
-            var rectangle = new CGRect(x, y, 200, 100);
-            var card = SKShapeNode.FromRect(rectangle, 5);
-            //var oval = SKShapeNode.
-            card.FillColor = NSColor.DarkGray;
-
-            oval.FillColor = NSColor.Blue;
-            oval.Position = new CGPoint(x + 100, y + 50);
-
-            card.AddChild(oval);
-
-            AddChild(card);*/
-        }
+      
     }
 }

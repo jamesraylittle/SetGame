@@ -72,6 +72,10 @@
     <BundleResource Include="GameScene.sks" />
     <BundleResource Include="Spaceship.png" />
     <BundleResource Include="Resources\bg.jpeg" />
+    <BundleResource Include="Resources\stripes.jpeg" />
+    <BundleResource Include="Resources\stripes.png" />
+    <BundleResource Include="Resources\bg_2.png" />
+    <BundleResource Include="Resources\bg_1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

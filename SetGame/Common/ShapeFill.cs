@@ -19,7 +19,7 @@ namespace SetGame.Common {
             Enum.GetValues(typeof(ShapeFill)).Cast<ShapeFill>().ToList();
 
         public static ShapeFill GetRandom() {
-            Random gen = new Random();
+            Random gen = new Random(Guid.NewGuid().GetHashCode());
             var nextIdx = gen.Next(0, All.Capacity);
             return All[nextIdx];
         }

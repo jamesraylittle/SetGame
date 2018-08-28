@@ -56,6 +56,8 @@ namespace SetGame {
                 new CGRect(0, 0, Settings.Sizes.CardHeight, Settings.Sizes.CardWidth);
             var card = SKShapeNode.FromRect(rectangle, 5);
             card.FillColor = Settings.Colors.CardBackgroundColor;
+            card.StrokeColor = Settings.Colors.CardStrokeColor;
+
 
             //Create the Shape Node:
 
@@ -68,7 +70,25 @@ namespace SetGame {
             for (int i = 0; i < _totalShapes; i++) {
                 SKShapeNode _shapeNode = _GetShape();
 
-                _shapeNode.FillColor = _fillColor;
+                _shapeNode.StrokeColor = _fillColor;
+                _shapeNode.LineWidth = 5f;
+
+                switch (ShapeFill) {
+                    case ShapeFill.Full:
+                        _shapeNode.FillColor = _fillColor;
+                    break;
+
+                    case ShapeFill.Half:
+                        _shapeNode.FillTexture = SKTexture.FromImageNamed(NSBundle.MainBundle.PathForResource("stripes", "png"));
+                        _shapeNode.FillColor = card.FillColor;
+                    break;
+
+                    default: //None Case
+                        _shapeNode.FillColor = card.FillColor;
+                    break;
+                }
+
+
 
                 switch (ShapeCount) { //can this be done less idiomatic?
                     case ShapeCount.Two:
@@ -95,6 +115,7 @@ namespace SetGame {
         private SKShapeNode _GetShape() {
             switch (Shape) {
                 case CardShape.Diamond: return ShapeFactory.MakeDiamond();
+                case CardShape.Sqiqqle: return ShapeFactory.MakeSquiggle();
                 default: return ShapeFactory.MakeOval();
             }
         }
