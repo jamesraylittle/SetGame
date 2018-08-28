@@ -61,14 +61,12 @@ namespace SetGame {
 
             //TODO: Check the actual shape enum
             var _totalShapes = ShapeCounts.GetInt(ShapeCount);
-            //var _totalShapes = 1;
             var _fillColor = ShapeColors.GetColor(ShapeColor);
             var _shapes = new List<SKShapeNode>(_totalShapes);
 
             //generate each shape:
             for (int i = 0; i < _totalShapes; i++) {
-                SKShapeNode _shapeNode =
-                    SKShapeNode.FromRect(Settings.Sizes.OvalSize, 20);
+                SKShapeNode _shapeNode = _GetShape();
 
                 _shapeNode.FillColor = _fillColor;
 
@@ -87,12 +85,18 @@ namespace SetGame {
                 }
 
                 _shapes.Add(_shapeNode);
+                card.AddChild(_shapeNode);
 
             }
 
-            _shapes.ForEach(card.AddChild);
-
             return card;
+        }
+
+        private SKShapeNode _GetShape() {
+            switch (Shape) {
+                case CardShape.Diamond: return ShapeFactory.MakeDiamond();
+                default: return ShapeFactory.MakeOval();
+            }
         }
 
         public void MouseOver() {

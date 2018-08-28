@@ -93,6 +93,7 @@
     <Compile Include="Settings\Colors.cs" />
     <Compile Include="Settings\Sizes.cs" />
     <Compile Include="Settings\Positions.cs" />
+    <Compile Include="ShapeFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainMenu.xib" />

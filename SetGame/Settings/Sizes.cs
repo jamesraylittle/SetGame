@@ -21,6 +21,10 @@ namespace SetGame.Settings {
         public static double OvalWidth = 20;
         public static CGSize OvalSize = new CGSize(OvalWidth, OvalHeight);
 
+        public static double DiamondHeight = 30;
+        public static double DiamondWidth = 30;
+        public static CGSize DiamondSize = new CGSize(DiamondWidth, DiamondHeight);
+
         /*
          * Game Table
          */
